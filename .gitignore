@@ -1,0 +1,31 @@
+
+# ECLIPSE CONFIG
+.classpath
+.project
+.settings
+.metadata
+target/*
+/bin
+
+# IDEA CONFIG
+.idea
+**/*.iml
+**/build
+.gradle
+#gradle/
+gradlew
+gradlew.bat
+*.ipr
+*.iws
+
+# STS CONFIG
+.springBeans
+
+/log
+*.db
+/build/
+
+/src/main/build.xml
+/.xml
+
+application.properties
