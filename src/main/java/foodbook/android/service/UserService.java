@@ -24,6 +24,7 @@ import foodbook.android.repository.ReservationTableRepository;
 import foodbook.android.repository.RestaurantRepository;
 import foodbook.android.repository.RestaurantTableRepository;
 import foodbook.android.repository.UserRepository;
+import foodbook.android.rest.ChangePasswordDTO;
 import foodbook.android.rest.dto.LoginDTO;
 import foodbook.android.rest.dto.ReservationRequestDTO;
 import foodbook.android.rest.dto.ReservationResponseDTO;
@@ -147,6 +148,23 @@ public class UserService {
 		if(user != null)
 			userDto = new UserDTO(user.getName(), user.getSurname(), user.getId());
 		return userDto; 
+	}
+
+
+	public LoginDTO changePassword(ChangePasswordDTO dto) {
+		
+		User user = userRepository.findOne(dto.getUserId()); 
+		LoginDTO loginDto = null; 
+		
+		if(user != null) {
+			user.setPassword(dto.getNewPassword());
+			user = userRepository.save(user); 
+			loginDto = new LoginDTO(user.getUsername(), user.getPassword()); 
+			
+			return loginDto; 
+		}
+		
+		return null;
 	}
 
 

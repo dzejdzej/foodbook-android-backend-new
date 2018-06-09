@@ -60,5 +60,15 @@ public class UserController {
 		return new ResponseEntity<Object>(user, HttpStatus.BAD_REQUEST);
 	}
 	
+	
+	@RequestMapping(value = "/change-password", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON)
+	public ResponseEntity<?> loginUser(@RequestBody ChangePasswordDTO dto) {
+		LoginDTO user = userService.changePassword(dto);
+
+		if (user != null) {
+			return new ResponseEntity<Object>(user, HttpStatus.OK);
+		}
+		return new ResponseEntity<Object>(user, HttpStatus.BAD_REQUEST);
+	}
 }
 

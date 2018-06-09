@@ -9,6 +9,12 @@ public class LoginDTO {
 		
 	}
 
+	public LoginDTO(String username, String password) {
+		// TODO Auto-generated constructor stub
+		this.username = username; 
+		this.password = password; 
+	}
+
 	public String getUsername() {
 		return username;
 	}
