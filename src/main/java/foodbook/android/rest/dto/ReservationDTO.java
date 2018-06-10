@@ -10,6 +10,7 @@ public class ReservationDTO {
 	private String owner; 
 	private String restaurantName; 
 	private boolean success; 
+	private String imageUrl; 
 	
 	public ReservationDTO() {
 		
@@ -61,6 +62,14 @@ public class ReservationDTO {
 
 	public void setSuccess(boolean success) {
 		this.success = success;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 			
 }

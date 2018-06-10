@@ -112,6 +112,7 @@ public class ReservationService {
 			dto.setId(r.getId());
 			if(r.getRestaurant() != null && r.getRestaurant().getName() != null) {
 				dto.setRestaurantName(r.getRestaurant().getName());
+				dto.setImageUrl(r.getRestaurant().getImageUrl());
 			}
 			
 			
