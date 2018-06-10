@@ -20,6 +20,8 @@ import foodbook.android.repository.CountryRepository;
 import foodbook.android.repository.RestaurantRepository;
 import foodbook.android.repository.RestaurantTableRepository;
 import foodbook.android.repository.UserRepository;
+import foodbook.android.service.firebase.FirebaseService;
+import foodbook.android.service.firebase.NotificationDTO;
 
 @RestController
 @RequestMapping("/test")
@@ -39,6 +41,38 @@ public class TestController {
 	
 	@Autowired
 	RestaurantTableRepository restaurantTableRepository;
+	
+	@Autowired 
+	FirebaseService firebaseService;
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/test-firebase")
+	public void sendFirebase() {
+		NotificationDTO info = new NotificationDTO();
+		
+		info.setTitle("Kek");
+		info.setNotificationType("Invited");
+		info.setInfoMessage("Some text");
+		info.setInviteReservationId(1L);
+			
+		// OVO JE ZA CANCEL
+		// for(InvitedUSerResavation user : invited) {
+		/****
+		 *   Notification dto = new ..
+		 *   dto.setTitle
+		 *   setMessage
+		 * 		firebaseService.send("" + user.getId(), dto)
+		 * 
+		 * ZA INVITE
+		 * setReservationId
+		 */
+		
+		
+		
+		
+		
+		firebaseService.sendMessage("1", info);
+	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/fill-database")
 	public ResponseEntity<?> getProfilePageInfo() {

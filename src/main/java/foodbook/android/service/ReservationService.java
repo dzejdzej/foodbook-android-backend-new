@@ -1,11 +1,14 @@
 package foodbook.android.service;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -179,6 +182,7 @@ public class ReservationService {
 					reservationTableRepository.delete(table); 
 				}
 				
+				responseDTO.setId(reservation.getId());
 				reservationRepository.delete(reservation);
 			}
 			
@@ -238,5 +242,21 @@ public class ReservationService {
 		return dto;
 	}
 */
+	
+	@Scheduled(fixedDelay = 60000)
+	public void scheduleFixedDelayTask() {
+	    Date date = new Date();
+		Date dateNext30Minutes = new Date(System.currentTimeMillis() + 30*60*1000);
+	    
+		List<Reservation> upcomingRes = reservationRepository.findByBeginBetween(date, dateNext30Minutes);
+		if(upcomingRes == null || upcomingRes.size() == 0) {
+			return;
+		}
+			for(Reservation reservation : upcomingRes) {
+				System.out.println("DA RESERVATION" + reservation);
+				// fgireba.send
+		
+		}
+	}
 
 }

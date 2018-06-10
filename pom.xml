@@ -123,7 +123,17 @@
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
 	
+<dependency>
+  <groupId>de.bytefish.fcmjava</groupId>
+  <artifactId>fcmjava-core</artifactId>
+  <version>2.5</version>
+</dependency>
 
+<dependency>
+  <groupId>de.bytefish.fcmjava</groupId>
+  <artifactId>fcmjava-client</artifactId>
+  <version>2.5</version>
+</dependency>
     
   </dependencies>
   
