@@ -1,7 +1,7 @@
 package foodbook.android.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +25,7 @@ public class Review implements Serializable{
 	private long id; 
 	
 	@Column(name="review_date", nullable = false)
-	private Date date; 
+	private LocalDateTime date;
 	
 	@Column(name="review_ratting", nullable = false)
 	private int ratting;
@@ -53,11 +53,11 @@ public class Review implements Serializable{
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 

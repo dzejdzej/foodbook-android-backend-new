@@ -1,5 +1,6 @@
 package foodbook.android.rest;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,14 @@ import foodbook.android.model.City;
 import foodbook.android.model.Country;
 import foodbook.android.model.Restaurant;
 import foodbook.android.model.RestaurantTable;
+import foodbook.android.model.Review;
 import foodbook.android.model.User;
 import foodbook.android.model.enumerations.RestaurantType;
 import foodbook.android.repository.CityRepository;
 import foodbook.android.repository.CountryRepository;
 import foodbook.android.repository.RestaurantRepository;
 import foodbook.android.repository.RestaurantTableRepository;
+import foodbook.android.repository.ReviewRepository;
 import foodbook.android.repository.UserRepository;
 import foodbook.android.service.firebase.FirebaseService;
 import foodbook.android.service.firebase.NotificationDTO;
@@ -41,6 +44,9 @@ public class TestController {
 	
 	@Autowired
 	RestaurantTableRepository restaurantTableRepository;
+
+	@Autowired
+	ReviewRepository reviewRepository;
 	
 	@Autowired 
 	FirebaseService firebaseService;
@@ -112,7 +118,8 @@ public class TestController {
 		// KINEZI
 		///////////////////////////////////
 		
-		Restaurant r1 = new Restaurant(); 
+		Restaurant r1 = new Restaurant();
+		r1.setId(1);
 		r1.setAddress("");
 		r1.setCity(city1);
 		r1.setContact("");
@@ -586,7 +593,25 @@ public class TestController {
 		
 		//////////////////////////////////////////////
 		
-		
+		// Reviews FOR 2 STAPICA
+
+		Review rw1 = new Review();
+		rw1.setComment("Actually I changed my mind. Don't like it.");
+		rw1.setDate(LocalDateTime.now());
+		rw1.setRatting(4);
+		rw1.setRestaurant(r1);
+		rw1.setUser(user1);
+		rw1 = reviewRepository.save(rw1);
+
+		Review rw2 = new Review();
+		rw2.setComment("Really nice.");
+		rw2.setDate(LocalDateTime.now().minusDays(4));
+		rw2.setRestaurant(r1);
+		rw2.setUser(user1);
+		rw2 = reviewRepository.save(rw2);
+
+
+
 		
 		System.out.println("DATABASE FILLED");
 		return new ResponseEntity<>(HttpStatus.OK);
