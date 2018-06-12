@@ -18,6 +18,7 @@ import foodbook.android.rest.dto.InviteFriendsDTO;
 import foodbook.android.rest.dto.ReservationDTO;
 import foodbook.android.rest.dto.ReservationRequestDTO;
 import foodbook.android.rest.dto.ReservationResponseDTO;
+import foodbook.android.rest.dto.UserDTO;
 import foodbook.android.service.ReservationService;
 
 @RequestMapping("/api/reservation")
@@ -55,6 +56,25 @@ public class ReservationController {
 		List<ReservationDTO> reservations = reservationService.getAllReservationsForUser(userId); 
 		
 		return new ResponseEntity<>(reservations, HttpStatus.OK);
+
+	}
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/confirm-attendance/user/{userId}/reservation/{reservationId}")
+	public ResponseEntity<?> confirmAttendance(@PathVariable(value = "userId") Long userId, @PathVariable(value = "reservationId") Long reservationId) {
+		reservationService.confirmAttendance(userId, reservationId);
+
+		
+		return new ResponseEntity<>(new UserDTO(), HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/cancel-attendance/user/{userId}/reservation/{reservationId}")
+	public ResponseEntity<?> cancelAttendance(@PathVariable(value = "userId") Long userId, @PathVariable(value = "reservationId") Long reservationId) {
+		reservationService.cancelAttendance(userId, reservationId);
+
+		
+		return new ResponseEntity<>(new UserDTO(), HttpStatus.OK);
 
 	}
 	

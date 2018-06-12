@@ -109,7 +109,8 @@ public class ReservationService {
 		List<Reservation> reservations = reservationRepository.findByOwner(user); 
 		List<InvitedToReservation> invitedReservations = invitedToReservationRepository.findByUser(user); 
 		for(InvitedToReservation i : invitedReservations) {
-			reservations.add(i.getReservation()); 
+			if(i.isConfirmed())
+				reservations.add(i.getReservation()); 
 		}
 		
 		List<ReservationDTO> reservationsDTO = new ArrayList<>(); 
