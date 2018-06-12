@@ -59,6 +59,12 @@ public class Restaurant implements Serializable{
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<Reservation> reservations = new ArrayList<Reservation>();
+
+	@Column(name = "restaurant_rating", nullable = true)
+	private Double rating;
+
+	private double x;
+	private double y;
 	
 	public Restaurant() {
 		
@@ -142,7 +148,29 @@ public class Restaurant implements Serializable{
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
-	}	
-	
-	
+	}
+
+	public double getX() {
+		return x;
+	}
+
+	public double getY() {
+		return y;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public Double getRating() {
+		return rating;
+	}
+
+	public void setRating(final Double rating) {
+		this.rating = rating;
+	}
 }

@@ -136,13 +136,15 @@ public class TestController {
 		r1.setId(1);
 		r1.setAddress("");
 		r1.setCity(city1);
-		r1.setContact("");
+		r1.setContact("0631701710");
 		r1.setImageUrl("/img/dvaStapica.jpg");
 		r1.setName("Dva Stapica");
 		r1.setReservations(null);
 		r1.setReviews(null);
 		r1.setTables(new ArrayList<RestaurantTable>());
 		r1.setType(RestaurantType.CHINESE);
+		r1.setX(45.2564063D);
+		r1.setY(19.8501625D);
 		r1 = restaurantRepository.save(r1); 
 		
 		RestaurantTable rt1 = new RestaurantTable(); 
@@ -175,13 +177,15 @@ public class TestController {
 		Restaurant r2 = new Restaurant(); 
 		r2.setAddress("");
 		r2.setCity(city1);
-		r2.setContact("");
+		r2.setContact("0631701710");
 		r2.setImageUrl("/img/kineskiZid.jfif");
 		r2.setName("Kineski zid");
 		r2.setReservations(null);
 		r2.setReviews(null);
 		r2.setTables(new ArrayList<RestaurantTable>());
 		r2.setType(RestaurantType.CHINESE);
+		r2.setX(45.2506388D);
+		r2.setY(19.8386143D);
 		r2 = restaurantRepository.save(r2); 
 		
 		RestaurantTable rt21 = new RestaurantTable(); 
@@ -215,13 +219,15 @@ public class TestController {
 		Restaurant r3 = new Restaurant(); 
 		r3.setAddress("");
 		r3.setCity(city1);
-		r3.setContact("");
+		r3.setContact("0631701710");
 		r3.setImageUrl("/img/maliLeo.jfif");
 		r3.setName("Mali Leo");
 		r3.setReservations(null);
 		r3.setReviews(null);
 		r3.setTables(new ArrayList<RestaurantTable>());
 		r3.setType(RestaurantType.CHINESE);
+		r3.setX(45.2602804D);
+		r3.setY(19.8344229D);
 		r3 = restaurantRepository.save(r3); 
 		
 		RestaurantTable rt31 = new RestaurantTable(); 
@@ -255,7 +261,7 @@ public class TestController {
 		Restaurant r4 = new Restaurant(); 
 		r4.setAddress("");
 		r4.setCity(city1);
-		r4.setContact("");
+		r4.setContact("0631701710");
 		r4.setImageUrl("/img/laMer.jfif");
 		r4.setName("La MER");
 		r4.setReservations(null);
@@ -294,7 +300,7 @@ public class TestController {
 		Restaurant r5 = new Restaurant(); 
 		r5.setAddress("");
 		r5.setCity(city1);
-		r5.setContact("");
+		r5.setContact("0631701710");
 		r5.setImageUrl("/img/hedone.jfif");
 		r5.setName("Hedone");
 		r5.setReservations(null);
@@ -334,7 +340,7 @@ public class TestController {
 		Restaurant r6 = new Restaurant(); 
 		r6.setAddress("");
 		r6.setCity(city1);
-		r6.setContact("");
+		r6.setContact("0631701710");
 		r6.setImageUrl("/img/gondola.jfif");
 		r6.setName("Gondola");
 		r6.setReservations(null);

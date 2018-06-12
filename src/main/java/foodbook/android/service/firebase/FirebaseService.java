@@ -16,8 +16,7 @@ import de.bytefish.fcmjava.responses.TopicMessageResponse;
 
 @Component
 public class FirebaseService {
-	
-	
+
 	
 	private FcmClient client;
 

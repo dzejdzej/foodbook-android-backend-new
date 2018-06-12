@@ -110,6 +110,9 @@ public class RestaurantService {
 			responseDto.setImageUrl(restaurant.getImageUrl());
 			responseDto.setRestaurantId(restaurant.getId());
 			responseDto.setRestaurantName(restaurant.getName());
+			responseDto.setRestaurantContact(restaurant.getContact());
+			responseDto.setX(restaurant.getX());
+			responseDto.setY(restaurant.getY());
 
 			responseDtos.add(responseDto);
 		}
