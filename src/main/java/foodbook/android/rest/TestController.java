@@ -119,7 +119,7 @@ public class TestController {
 		user2.setConfirmed_mail(true);
 		user2.setContact("0631652267");
 		user2.setEmail("j@j");
-		user2.setName("Jelena");
+		user2.setName("Jel");
 		user2.setPassword("d");
 		user2.setSurname("Jankovic");
 		user2.setUsername("d");
