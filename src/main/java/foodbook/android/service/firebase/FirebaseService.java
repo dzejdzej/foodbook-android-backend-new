@@ -40,7 +40,8 @@ public class FirebaseService {
 			@Override
 			public String getApiKey() {
 				//return "AAAAVhdyabY:APA91bGSwRwxAwhjOX91nzbu3w5u85Tkv2tP7jCe0ThueEdmvFaTMD40EaSebcehMNN60c93Uo4it3txRcBZjsR8OVgz9YhCyNquM01Lllrf_AdeamXNy7u8uffFc8x2VAI_8oRhngO7";
-				return "AIzaSyC96SNAHjm1-Ri281joGkscjuFrl6cJoN0";
+				//return "AIzaSyC96SNAHjm1-Ri281joGkscjuFrl6cJoN0";
+				return "AIzaSyDlQRWL3PJo5KtToVHTDSGTpFOWg3N6Vko"; 
 			}
 		});
 	}

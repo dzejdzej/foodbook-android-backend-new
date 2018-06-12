@@ -22,7 +22,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
 	List<Reservation> findByOwner(User user); 
 	
-	 List<Reservation> findByBeginBetween(Date now, Date next30Minutes);
+	 List<Reservation> findByBeginBetweenAndNotified(Date now, Date next30Minutes, boolean isNotified);
 	
 	
 }

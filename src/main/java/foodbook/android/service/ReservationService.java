@@ -27,6 +27,8 @@ import foodbook.android.rest.dto.CreatedReservationDTO;
 import foodbook.android.rest.dto.InviteFriendsDTO;
 import foodbook.android.rest.dto.ReservationDTO;
 import foodbook.android.rest.dto.ReservationRequestDTO;
+import foodbook.android.service.firebase.FirebaseService;
+import foodbook.android.service.firebase.NotificationDTO;
 
 
 @Service
@@ -50,6 +52,9 @@ public class ReservationService {
 
 	@Autowired
 	private InvitedToReservationRepository invitedToReservationRepository; 
+	
+	@Autowired 
+	FirebaseService firebaseService;
 	
 	public CreatedReservationDTO makeReservation(ReservationRequestDTO dto) {
 		
@@ -165,7 +170,7 @@ public class ReservationService {
 		invitedToReservationRepository.save(invitation);
 		
 	}
-
+		
 	public ReservationDTO cancelReservation(Long userId, Long reservationId) {
 			ReservationDTO responseDTO = new ReservationDTO();
 			Reservation reservation = reservationRepository.findOne(reservationId);
@@ -187,9 +192,17 @@ public class ReservationService {
 			}
 			
 			for(InvitedToReservation i : invitations) {
+				
 				if(i.getUser().getId() == userId) {
 					invitedToReservationRepository.delete(i);
+				} else {
+					NotificationDTO info = new NotificationDTO(); 
+					info.setTitle("CANCEL RESERVATION");
+					info.setInfoMessage("Rezervacija broj: " + i.getReservation().getId() + " otkazana!");
+					firebaseService.sendMessage("" + i.getUser().getId(), info); 
 				}
+				
+			
 			}
 			
 			responseDTO.setSuccess(true);
@@ -210,6 +223,13 @@ public class ReservationService {
 			i.setReservation(reservation);
 			i.setUser(u);
 			invitedToReservationRepository.save(i); 
+			
+			NotificationDTO info = new NotificationDTO(); 
+			info.setTitle("INVITATION");
+			info.setInfoMessage("Invitation to rezervation number: " + i.getReservation().getId() + "from owner " + i.getUser().getUsername());
+			info.setInviteReservationId(i.getReservation().getId());
+			
+			firebaseService.sendMessage("" + u.getId(), info);
 		}
 
 		return dto;
@@ -243,19 +263,38 @@ public class ReservationService {
 	}
 */
 	
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 10000)
 	public void scheduleFixedDelayTask() {
 	    Date date = new Date();
 		Date dateNext30Minutes = new Date(System.currentTimeMillis() + 30*60*1000);
 	    
-		List<Reservation> upcomingRes = reservationRepository.findByBeginBetween(date, dateNext30Minutes);
+		List<Reservation> upcomingRes = reservationRepository.findByBeginBetweenAndNotified(date, dateNext30Minutes, false);
 		if(upcomingRes == null || upcomingRes.size() == 0) {
 			return;
 		}
 			for(Reservation reservation : upcomingRes) {
-				System.out.println("DA RESERVATION" + reservation);
-				// fgireba.send
-		
+				
+				System.out.println("USAO KOD OWNERA!!!");
+				NotificationDTO dto = new NotificationDTO(); 
+				dto.setTitle("REMINDER");
+				dto.setInfoMessage("Your reservation: " + reservation.getId() + " begins in less than 30 minutes!");
+				
+				firebaseService.sendMessage("" + reservation.getOwner().getId(), dto);
+				
+				reservation.setNotified(true);
+				reservationRepository.save(reservation);
+				
+				List<InvitedToReservation> invited = reservation.getInvited(); 
+				if(invited == null)
+					break; 
+				
+				for(InvitedToReservation i : invited) {
+					System.out.println("USAO KOD INVITED!!!");
+					firebaseService.sendMessage("" + i.getUser().getId(), dto);
+					i.getReservation().setNotified(true);
+					invitedToReservationRepository.save(i); 
+					
+				}		
 		}
 	}
 

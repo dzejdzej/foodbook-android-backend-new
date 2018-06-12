@@ -35,6 +35,9 @@ public class Reservation implements Serializable{
 	@Column(name="appointment_end")
 	private Date end;
 	
+	@Column(name="notified")
+	private boolean notified;
+	
 	@Column(name="reservation_canceled")
 	private boolean canceled;
 	
@@ -149,5 +152,13 @@ public class Reservation implements Serializable{
 	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
 	}
-	
+
+	public boolean isNotified() {
+		return notified;
+	}
+
+	public void setNotified(boolean notified) {
+		this.notified = notified;
+	}
+
 }

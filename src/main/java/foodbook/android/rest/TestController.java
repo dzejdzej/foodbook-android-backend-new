@@ -105,12 +105,26 @@ public class TestController {
 		user1.setCity(city1);
 		user1.setConfirmed_mail(true);
 		user1.setContact("0631652267");
-		user1.setEmail("jelena@gmail.com");
+		user1.setEmail("jelenaa31051994@gmail.com");
 		user1.setName("Jelena");
 		user1.setPassword("j");
 		user1.setSurname("Jankovic");
 		user1.setUsername("j");
 		user1 = userRepository.save(user1); 
+		
+		
+		User user2 = new User(); 
+		user2.setAddress("Zeleznicka 21");
+		user2.setCity(city1);
+		user2.setConfirmed_mail(true);
+		user2.setContact("0631652267");
+		user2.setEmail("j@j");
+		user2.setName("Jelena");
+		user2.setPassword("d");
+		user2.setSurname("Jankovic");
+		user2.setUsername("d");
+		user2 = userRepository.save(user2); 
+		
 		
 		
 		
